@@ -1,0 +1,20 @@
+/* selector universal el cual selecciona todos los elementos * con este codigo funciona todo el texto  * {
+color: purple
+}*/
+
+/* selector de etiqueta h1 */
+
+h2 {color: chartreuse;
+    font-size: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h3 {
+    color: blue;
+    font-size: 40px;
+}
+
+p {
+    color: green;
+}
+
