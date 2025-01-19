@@ -24,3 +24,10 @@ a {
     font-family: "Gemunu Libre", serif;
     font-size: 32px;
 }
+
+.estructura1 {
+    width: 350px;
+    border-width: 5px;
+    border-color: black;
+    border-style: dashed;   
+}
