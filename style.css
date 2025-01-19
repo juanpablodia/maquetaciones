@@ -19,3 +19,8 @@ p {
     color: green;
 }
 
+a {
+    color: rgb(255, 0, 0);
+    font-family: "Gemunu Libre", serif;
+    font-size: 32px;
+}
