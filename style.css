@@ -31,3 +31,11 @@ a {
     border-color: black;
     border-style: dashed;   
 }
+
+.bordes-estructura {
+    border-width: 5px;
+    border-color: black;
+    border-style: dashed;
+    border-radius: 20px;
+}
+
