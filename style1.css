@@ -17,3 +17,56 @@ h4  {
     border-color: black;
     border-style: dashed;
 }
+
+/*esta es una prueba para crear una tarjeta con el area de diseño de la tarjeta*/
+
+/* Bloque */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Elementos */
+.card__header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.card__title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.card__body {
+    margin-bottom: 20px;
+}
+
+.card__text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.card__footer {
+    text-align: right;
+}
+
+/* Modificadores */
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button--primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.button--secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
