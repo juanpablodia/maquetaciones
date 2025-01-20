@@ -18,8 +18,8 @@ h4  {
     border-style: dashed;
 }
 
-/*esta es una prueba para crear una tarjeta con el area de diseño de la tarjeta*/
 
+/*esta es una prueba para crear una tarjeta con el area de diseño de la tarjeta*/
 /* Bloque */
 .card {
     border: 1px solid #ccc;
@@ -70,3 +70,12 @@ h4  {
     background-color: #6c757d;
     color: #fff;
 }
+
+
+/*color para los parrafos no principales este es posible que se modifique*/
+.color-parrafo {
+    color: rgb(0, 0, 255);
+    background-color: blanchedalmond;
+}
+
+
