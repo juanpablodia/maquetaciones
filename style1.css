@@ -78,4 +78,15 @@ h4  {
     background-color: blanchedalmond;
 }
 
+/*color para los parrafos principales este es posible que se modifique*/
+#t-principal {
+    color: #000080; /* Azul Marino */
+    background-color: silver;
+    text-align: center; /* Centra el texto dentro del elemento */
+    width: 50%; /* Ajusta el ancho según sea necesario */
+    margin: 0 auto; /* Centra el elemento horizontalmente */
+    padding: 20px; /* Añade un poco de padding para mejorar la apariencia */
+    border-radius: 10px; /* Añade bordes redondeados para un mejor aspecto */
+}
+
 
