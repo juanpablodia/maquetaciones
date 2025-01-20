@@ -5,3 +5,15 @@ h4  {
 .elementos {
     color: rgb(132, 0, 255);
 }
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+}
+
+.ajustada {
+    width: 350px;
+    border-width: 5px;
+    border-color: black;
+    border-style: dashed;
+}

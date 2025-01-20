@@ -39,3 +39,12 @@ a {
     border-radius: 20px;
 }
 
+
+.imagen-redondeada {
+    border-style: dashed;
+    border-color: orangered;
+    border-radius: 50%;
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
