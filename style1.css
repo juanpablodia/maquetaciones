@@ -90,3 +90,20 @@ h4  {
 }
 
 
+/*creacion de fundamento en padding y margin*/
+
+.padding {
+    background-color: #000080;
+    display: grid; /* Utiliza un sistema de cuadrícula */
+    place-items: center; /* Centra horizontal y verticalmente */
+    height: 600px; /* Ajusta la altura según sea necesario */
+}
+
+.imagen {
+    background-color: yellow;
+    border-width: 5px; /* Ancho del borde */
+    border-color: black; /* Color del borde */
+    border-style: solid; /* Sólido */
+    padding: 20px 50px; /* Aplica 20px de padding en la parte superior e inferior, y 50px de padding en la izquierda y derecha */
+    width: 25%; /* Ajusta el ancho según sea necesario */
+}
