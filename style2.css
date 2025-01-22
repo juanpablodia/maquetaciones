@@ -1,0 +1,14 @@
+div {
+    background-color: cornflowerblue; /*color de fondo del div*/
+}
+
+img {
+background-color: rgb(220, 231, 255); /*color de fondo de la imagen*/
+border-width: 5px; /*grosor del borde*/
+border-color: black; /*color del borde*/
+border-style: solid; /*tipo de borde*/
+padding: 15px; /*espacio entre el borde y la imagen*/
+}
+
+
+
