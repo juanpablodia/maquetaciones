@@ -1,0 +1,35 @@
+.container1 {
+    background-color: cornflowerblue; /*color de fondo del div*/    
+}
+
+.container1 img {
+    margin: 15px; /*espacio entre la imagen y el borde*/
+    /*margin-right: 10px; espacio entre la imagen y el borde por la derecha*/
+    /*margin-left: 15px; espacio entre la imagen y el borde por la izquierda*/
+    /*margin-top: 10px; espacio entre la imagen y el borde por arriba*/
+    /*margin: 15px 20px 15px 20px; espacio entre la imagen y el borde en sentid de la aguja del reloj*/
+    border-width: 5px; /*grosor del borde*/
+    border-color: black; /*color del borde*/
+    border-style: solid; /*tipo de borde*/
+    padding: 15px; /*espacio entre el borde y la imagen*/
+    /*padding-left: 10px; espacio entre el borde y la imagen por la izquierda*/
+    /*padding-right: 10px; espacio entre el borde y la imagen por la derecha*/
+    /*padding-top: 10px; espacio entre el borde y la imagen por arriba*/
+    /*padding-bottom: 10px; espacio entre el borde y la imagen por abajo*/
+    /*en los padding se puede poner un solo valor para que sea igual en todos los lados ejemplo padding: 15px 20px 15px 20px en dirección a las manecillas del reloj*/
+    }
+
+    .container2 {
+        border-width: 4px; /* Grosor del borde */
+        border-color: navy; /* Color del borde */
+        border-style: solid; /* Tipo de borde */  
+    }
+
+    .container2 img {
+        margin: 25px; /*espacio entre la imagen y el borde*/
+        padding: 25px; 
+        border-width: 4px; /* Grosor del borde */
+        border-color: navy; /* Color del borde */
+        border-style: solid; /* Tipo de borde */
+    }
+
