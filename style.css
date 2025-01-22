@@ -48,3 +48,15 @@ a {
     display: block;
     margin: 0 auto;
 }
+
+img[alt] {
+    border-width: 5px; /*grosor del borde*/
+    border-color: black; /*color del borde*/
+    border-style: solid; /*tipo de borde*/
+    border-radius: 20px; /*redondear las esquinas del borde*/
+}
+
+
+[type="radio"] {
+    margin: 5px; /*espacio entre los radio buttons*/
+}
