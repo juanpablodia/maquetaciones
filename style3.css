@@ -33,3 +33,11 @@
         border-style: solid; /* Tipo de borde */
     }
 
+    /*Se puede hacer referencia a un elemento concreto de una página web*/
+
+    a[href="https://www.freecodecamp.org/espanol/"] {
+        color: rgb(255, 0, 0);
+        font-family: "Gemunu Libre", serif;
+        font-size: 32px;
+    }
+
