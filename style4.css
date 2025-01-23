@@ -1,36 +1,38 @@
-.Titulo-Principal {
-    font-size: 2em;
-    color: green;
-    text-align: center;
-    margin-top: 10;
-    margin-bottom: 10;
+.Titulo-Principal { 
+    font-size: 2em; /* Tamaño de la letra */
+    color: green; /* Color del texto */
+    text-align: center; /* Alinear texto */
+    margin-top: 10; /*espacio entre el borde y el texto*/
+    margin-bottom: 10; /*espacio entre el borde y el texto*/
 }
 
 #contenedor-principal {
-    color: whitesmoke;
-    padding: 10px;
-    font-size: 20px;
-    background-color: green;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: whitesmoke; /* Color del texto */
+    padding: 10px; /*espacio entre el borde y el texto*/
+    font-size: 20px; /* Tamaño de la letra */
+    background-color: green; /* Color de fondo */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Tipo de letra */
 
 }
 
 .rectangulo {
-    padding: 5px;
-    margin: 5px;
+    padding: 5px; /*espacio entre el borde y el texto*/
+    margin: 5px; /*espacio entre el borde y el texto*/
 }
 
 .px {
-    background-color: rgb(156, 226, 43);
-    width: 200px;
+    background-color: rgb(156, 226, 43); /* Color de fondo */
+    width: 200px; /* Tamaño de la letra */
 }
 
 .vw {
-    background-color: rgb(156, 226, 43);
-    width: 20vw;
+    background-color: rgb(156, 226, 43); /* Color de fondo */
+    width: 20vw; /* Tamaño de la letra */
 }
 
 .em {
-    background-color: rgb(156, 226, 43);
-    width: 15em;
+    background-color: rgb(156, 226, 43); /* Color de fondo */
+    width: 15em; /* Tamaño de la letra */
+    font-size: 5em; /* Tamaño de la letra */
+
 }
