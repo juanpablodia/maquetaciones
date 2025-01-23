@@ -36,8 +36,15 @@
     /*Se puede hacer referencia a un elemento concreto de una página web*/
 
     a[href="https://www.freecodecamp.org/espanol/"] {
-        color: rgb(255, 0, 0);
-        font-family: "Gemunu Libre", serif;
-        font-size: 32px;
+        color: rgb(255, 0, 0); /* Color del texto */
+        font-family: "Gemunu Libre", serif; /* Tipo de letra */
+        font-size: 40px; /* Tamaño de la letra */
+        font-weight: bold; /* Grosor de la letra */
+        text-decoration: none; /* Quitar subrayado */  
+        align-items: center; /* Alinear elementos */ 
+        display: flex; /* Mostrar como flex */
+        justify-content: center; /* Justificar contenido */
+        height: 100%; /* Altura */
+        text-align: center; /* Alinear texto */
     }
 

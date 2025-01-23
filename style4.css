@@ -1,0 +1,36 @@
+.Titulo-Principal {
+    font-size: 2em;
+    color: green;
+    text-align: center;
+    margin-top: 10;
+    margin-bottom: 10;
+}
+
+#contenedor-principal {
+    color: whitesmoke;
+    padding: 10px;
+    font-size: 20px;
+    background-color: green;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.rectangulo {
+    padding: 5px;
+    margin: 5px;
+}
+
+.px {
+    background-color: rgb(156, 226, 43);
+    width: 200px;
+}
+
+.vw {
+    background-color: rgb(156, 226, 43);
+    width: 20vw;
+}
+
+.em {
+    background-color: rgb(156, 226, 43);
+    width: 15em;
+}
