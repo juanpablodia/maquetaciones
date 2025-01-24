@@ -1,0 +1,61 @@
+/* Añade un ícono antes del contenido del párrafo */
+p::before {
+    content: "📝 ";
+    font-size: 30px;
+}
+
+/* Añade un ícono después del contenido del párrafo */
+p::after {
+    content: " 📝";
+    font-size: 60px;
+}
+
+/* Hace que la primera línea del párrafo sea negrita y de color rojo */
+p::first-line {
+    font-weight: bold;
+    color: black;
+}
+
+/* Aumenta el tamaño de la primera letra del párrafo y la hace azul */
+p::first-letter {
+    font-size: 2em;
+    color: white;
+}
+
+/* Cambia el color de fondo del texto seleccionado a amarillo y el color del texto a negro */
+::selection {
+    background-color: yellow;
+    color: black;
+}
+
+/* Cambia el color de fondo del párrafo a gris claro cuando el ratón pasa sobre él */
+p:hover {
+    background-color: lightgrey;
+    color: darkblue; /* Cambia el color del texto a azul oscuro cuando el ratón pasa sobre él */
+}
+
+/* Alinea vertical y horizontalmente en el centro usando Flexbox */
+.contenedor {
+    display: flex;
+    justify-content: center; /* Alinea horizontalmente en el centro */
+    align-items: center; /* Alinea verticalmente en el centro */
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+
+}
+
+/* Alinea el texto al centro dentro de los párrafos */
+p {
+    text-align: center;    
+    padding: 50px;
+    margin: 30px;
+    color: white;
+    border-radius: 20px;
+    border: 10px;
+
+}
+
+body {
+    background-color: silver;
+}
+
+
