@@ -1,0 +1,23 @@
+.pinguino {
+    --pinguino-barriga: gray; /* color de la barriga */
+    --pinguino-pico: orange; /* color del pico */
+    position: relative; /* posición relativa para poder posicionar los elementos internos */
+    margin: auto; /* centrar el pinguino */
+    display: block; /* para que el margin auto funcione */
+    margin-top: 5% auto; /* margen superior */
+    width: 300px; /* ancho del pinguino */
+    height: 300px; /* alto del pinguino */
+    border-radius: 50%; /* Para darle una forma redonda al contenedor del pingüino */
+    overflow: hidden; /* Para asegurar que los elementos internos no se desborden */
+}
+
+.pinguino-superior {
+    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
+    top: 10%; /* posición superior */
+    left: 25%; /* posición izquierda */
+    background: black; /* color del cuerpo */
+    width: 50%; /* ancho del cuerpo */
+    height: 45%; /* alto del cuerpo */
+    border-radius: 70% 70% 60% 60% /* Para darle una forma redonda al cuerpo */
+    z-index: index; /* Para que el cuerpo esté por encima de los otros elementos */
+}
