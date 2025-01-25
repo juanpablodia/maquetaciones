@@ -21,3 +21,14 @@
     border-radius: 70% 70% 60% 60% /* Para darle una forma redonda al cuerpo */
     z-index: index; /* Para que el cuerpo esté por encima de los otros elementos */
 }
+
+.pinguino-inferior {
+    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
+    top: 40%; /* posición superior */
+    left: 23.5%; /* posición izquierda */
+    background: black; /* color del cuerpo */
+    width: 53%; /* ancho del cuerpo */
+    height: 45%; /* alto del cuerpo */
+    border-radius: 70% 70% 100% 100% /* Para darle una forma redonda al cuerpo */
+ 
+}   
