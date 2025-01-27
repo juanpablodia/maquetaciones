@@ -2,10 +2,10 @@
     --pinguino-barriga: gray; /* color de la barriga */
     --pinguino-pico: orange; /* color del pico */
     position: relative; /* posición relativa para poder posicionar los elementos internos */
-    margin: 5% auto 0 auto; /* centrar el pinguino */
+    margin: 5% auto; /* centrar el pingüino y margen superior */
     display: block; /* para que el margin auto funcione */
-    width: 800px; /* ancho del pinguino */
-    height: 800px; /* alto del pinguino */
+    width: 300px; /* ancho del pingüino */
+    height: 300px; /* alto del pingüino */
     border-radius: 50%; /* Para darle una forma redonda al contenedor del pingüino */
     overflow: hidden; /* Para asegurar que los elementos internos no se desborden */
 }
@@ -14,10 +14,10 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 10%; /* posición superior */
     left: 25%; /* posición izquierda */
-    background: black; /* color del cuerpo */
+    background-color: black; /* color del cuerpo */
     width: 50%; /* ancho del cuerpo */
     height: 45%; /* alto del cuerpo */
-    border-radius: 70% 70% 70% 70%; /* Para darle una forma redonda al cuerpo */
+    border-radius: 70% 70% 60% 60%; /* Para darle una forma redonda al cuerpo */
     z-index: 1; /* Para que el cuerpo esté por encima de los otros elementos */
 }
 
@@ -25,30 +25,29 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 40%; /* posición superior */
     left: 23.5%; /* posición izquierda */
-    background: black; /* color del cuerpo */
+    background-color: black; /* color del cuerpo */
     width: 53%; /* ancho del cuerpo */
     height: 45%; /* alto del cuerpo */
     border-radius: 70% 70% 100% 100%; /* Para darle una forma redonda al cuerpo */
     z-index: 0; /* Para que el cuerpo esté por encima de los otros elementos */
- 
-}   
+}
 
 .mano-derecha {
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 0%; /* posición superior */
-    left: -10%; /* posición izquierda */
-    background: black; /* color del cuerpo */
+    left: -5%; /* posición izquierda */
+    background-color: black; /* color del cuerpo */
     width: 30%; /* ancho del cuerpo */
     height: 60%; /* alto del cuerpo */
-    border-radius: 60% 20% 20% 30%; /* Para darle una forma redonda al cuerpo */
+    border-radius: 30% 30% 120% 30%; /* Para darle una forma redonda al cuerpo */
     z-index: 1; /* Para que el cuerpo esté por encima de los otros elementos */
 }
 
 .mano-izquierda {
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 0%; /* posición superior */
-    right: -5%; /* posición izquierda */
-    background: black; /* color del cuerpo */
+    left: 75%; /* posición izquierda */
+    background-color: black; /* color del cuerpo */
     width: 30%; /* ancho del cuerpo */
     height: 60%; /* alto del cuerpo */
     border-radius: 30% 30% 30% 120%; /* Para darle una forma redonda al cuerpo */
@@ -60,7 +59,7 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 15%; /* posición superior */
     left: 35%; /* posición izquierda */
-    background: var(--pinguino-barriga, white); /* color de la barriga */
+    background-color: var(--pinguino-barriga, white); /* color de la barriga */
     width: 60%; /* ancho del cuerpo */
     height: 70%; /* alto del cuerpo */
     border-radius: 70% 70% 60% 60%; /* Para darle una forma redonda al cuerpo */
@@ -71,7 +70,7 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 15%; /* posición superior */
     left: 5%; /* posición izquierda */
-    background: var(--pinguino-barriga, white); /* color de la barriga */
+    background-color: var(--pinguino-barriga, white); /* color de la barriga */
     width: 60%; /* ancho del cuerpo */
     height: 70%; /* alto del cuerpo */
     border-radius: 70% 70% 60% 60%; /* Para darle una forma redonda al cuerpo */
@@ -82,7 +81,7 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 60%; /* posición superior */
     left: 2.5%; /* posición izquierda */
-    background: var(--pinguino-barriga, white); /* color de la barriga */
+    background-color: var(--pinguino-barriga, white); /* color de la barriga */
     width: 95%; /* ancho del cuerpo */
     height: 100%; /* alto del cuerpo */
     border-radius: 120% 120% 100% 100%; /* Para darle una forma redonda al cuerpo */
@@ -93,7 +92,7 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 85%; /* posición superior */
     left: 60%; /* posición izquierda */
-    background: var(--pinguino-pico, orange); /* color del pico */
+    background-color: var(--pinguino-pico, orange); /* color del pico */
     width: 15%; /* ancho del cuerpo */
     height: 30%; /* alto del cuerpo */
     border-radius: 50%; /* Para darle una forma redonda al cuerpo */
@@ -105,7 +104,7 @@
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
     top: 85%; /* posición superior */
     left: 25%; /* posición izquierda */
-    background: var(--pinguino-pico, orange); /* color del pico */
+    background-color: var(--pinguino-pico, orange); /* color del pico */
     width: 15%; /* ancho del cuerpo */
     height: 30%; /* alto del cuerpo */
     border-radius: 50%; /* Para darle una forma redonda al cuerpo */
@@ -126,103 +125,15 @@
 
 .ojo-izquierdo {
     position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 30%; /* posición superior */
-    right: 55%; /* posición izquierda */
+    top: 45%; /* posición superior */
+    left: 25%; /* posición izquierda */
     background-color: black; /* color del cuerpo */
-    width: 8%; /* ancho del cuerpo */
-    height: 8%; /* alto del cuerpo */
+    width: 15%; /* ancho del cuerpo */
+    height: 17%; /* alto del cuerpo */
     border-radius: 50%; /* Para darle una forma redonda al cuerpo */
     z-index: 4; /* Para que el cuerpo esté por encima de los otros elementos */
 }
 
-
-.reflejo-ojo1 {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 52%; /* ajusta la posición superior para que coincida con el ojo derecho */
-    left: 60%; /* ajusta la posición izquierda para que coincida con el ojo derecho */
-    background-color: white; /* color del cuerpo */
-    width: 5%; /* ajusta el ancho del reflejo */
-    height: 5%; /* ajusta el alto del reflejo */
-    border-radius: 50%; /* Para darle una forma redonda al cuerpo */
-    z-index: 5; /* Para que el reflejo esté por encima del ojo */
-}
-
-.reflejo-ojo2 {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 46%; /* ajusta la posición superior para que coincida con el ojo derecho */
-    left: 8.5%; /* ajusta la posición izquierda para que coincida con el ojo derecho */
-    background-color: white; /* color del cuerpo */
-    width: 30%; /* ajusta el ancho del reflejo */
-    height: 30%; /* ajusta el alto del reflejo */
-    border-radius: 50%; /* Para darle una forma redonda al cuerpo */
-    z-index: 5; /* Para que el reflejo esté por encima del ojo */
-}
-
-.color-mejilla-derecha {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 37%; /* posición superior */
-    left: 30%; /* posición izquierda */
-    background: pink; /* color del cuerpo */
-    width: 6%; /* ancho del cuerpo */
-    height: 3%; /* alto del cuerpo */
-    border-radius: 50%; /* Para darle una forma redonda al cuerpo */
-    z-index: 2; /* Para que el cuerpo esté por encima de los otros elementos */
-}
-
-.color-mejilla-izquierda {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 37%; /* posición superior */
-    left: 64%; /* posición izquierda */
-    background: pink; /* color del cuerpo */
-    width: 6%; /* ancho del cuerpo */
-    height: 3%; /* alto del cuerpo */
-    border-radius: 50%; /* Para darle una forma redonda al cuerpo */
-    z-index: 2; /* Para que el cuerpo esté por encima de los otros elementos */
-}
-
-.pico-superior {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 35%; /* posición superior */
-    left: 45%; /* posición izquierda */
-    background: var(--pinguino-pico, orange); /* color del pico */
-    width: 10%; /* ancho del cuerpo */
-    height: 5%; /* alto del cuerpo */
-    border-radius: 50%; /* Para darle una forma redonda al cuerpo */
-    z-index: 3; /* Para que el cuerpo esté por encima de los otros elementos */
-}
-
-.pico-inferior {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 38%; /* posición superior */
-    left: 45.5%; /* posición izquierda */
-    background: var(--pinguino-pico, orange); /* color del pico */
-    width: 9%; /* ancho del cuerpo */
-    height: 4%; /* alto del cuerpo */
-    border-radius: 50%; /* Para darle una forma redonda al cuerpo */
-    z-index: 3; /* Para que el cuerpo esté por encima de los otros elementos */
-}
-
-.piso-inferior {
-    position: absolute; /* posición absoluta para poder posicionar los elementos internos */
-    top: 80%; /* posición superior */
-    left: 0%; /* posición izquierda */
-    background: whitesmoke; /* color del cuerpo */
-    width: 100%; /* ancho del cuerpo */
-    height: 10%; /* alto del cuerpo */
-    border-radius: 10%;
-    z-index: -1; /* Para que el cuerpo esté por encima de los otros elementos */
-}
-
-.nubes {
-    position: absolute; /* posición absoluta para poder posicionar las nubes */
-    top: 0; /* posición superior */
-    left: 0; /* posición izquierda */
-    background: skyblue; /* color de fondo para las nubes */
-    width: 100%; /* ancho del cuerpo */
-    height: 40%; /* alto del cuerpo */
-    border-radius: 0%;
-    z-index: -1; /* Para que las nubes estén por debajo de los otros elementos */
-}
 
 
 body {
