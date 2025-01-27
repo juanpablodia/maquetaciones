@@ -208,7 +208,7 @@
     left: 0%; /* posición izquierda */
     background: whitesmoke; /* color del cuerpo */
     width: 100%; /* ancho del cuerpo */
-    height: 10%; /* alto del cuerpo */
+    height: 20%; /* alto del cuerpo */
     border-radius: 10%;
     z-index: -1; /* Para que el cuerpo esté por encima de los otros elementos */
 }
@@ -219,7 +219,7 @@
     left: 0; /* posición izquierda */
     background: skyblue; /* color de fondo para las nubes */
     width: 100%; /* ancho del cuerpo */
-    height: 40%; /* alto del cuerpo */
+    height: 80%; /* alto del cuerpo */
     border-radius: 0%;
     z-index: -1; /* Para que las nubes estén por debajo de los otros elementos */
 }
