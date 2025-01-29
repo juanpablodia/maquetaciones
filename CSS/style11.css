@@ -16,24 +16,33 @@ h1 {
     height: 810px; /* set height */
     margin: 0 auto; /* center the container */
     border: 2px solid black; /* set border */
-    flex-direction: column; /* set the direction of the flex */
+    flex-direction: row; /* set the direction of the flex */
     justify-content: center ; /* align the items to the end */
-    /*flex-wrap: wrap; /* wrap the flex items */    
-    /* flex flow: row wrap-reverse; */
-    align-items: center; /* stretch the items */
+    flex-wrap: wrap; /* wrap the flex items */    
+    /*flex flow: row wrap-reverse; */
+    align-items: center ; /* stretch the items */
+    align-content: center; /* align the content */
 }
 
 .box {
     display: flex; /* make the box flex */
     justify-content: center; /* align the items to the center */
-    width: 140px; /* set width to 90% of the container */
-    height: 140px; /* set height to 50% of viewport height */
+    width: 180px; /* set width to 90% of the container */
+    height: 180px; /* set height to 50% of viewport height */
     margin: 0.5rem; */ 
     text-align: center; /* center align the text */
     color: white; /* set text color */
     font-size: 4rem; /* set font size */
     border: 1px solid greenyellow; /* set border */   
 }
+
+/*.box:nth-child(odd) {
+    line-height: 60px; /* set line height 
+}*/
+
+/*.box:nth-child(even) {
+    line-height: 200px; /* set line height 
+} */
 
 /* justify-content: alinea los elementos flexibles a lo largo del eje principal del contenedor. Controla la distribución del espacio adicional en el eje principal */
 /* aline items: alinea los elementos flexibles dentro del contenedor cuando los elementos no utilizan todo el espacio disponible en el eje transversal */
