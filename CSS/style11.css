@@ -1,0 +1,31 @@
+body {
+    margin: 0; /* remove default margin */
+    padding: 0; /* remove default padding */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: cornsilk; /* set background color */
+}
+
+
+h1 {
+    text-align: center; /* center align the text */
+}
+
+.container {
+    display: flex; /* make the container flex */
+    width: 980px; /* set width to 90% of the viewport width */
+    height: 800px; /* set height */
+    margin: 0 auto; /* center the container */
+    border: 5px solid black; /* set border */
+    flex-direction: column; /* set the direction of the flex */
+    flex-wrap: wrap; /* wrap the flex items */    
+}
+
+.box {
+    /*width: 90%; /* set width to 90% of the container */
+    height: 600px; /* set height to 50% of viewport height */
+    /* margin: 0.5rem; */ 
+    text-align: center; /* center align the text */
+    color: white; /* set text color */
+    font-size: 4rem; /* set font size */
+    border: 1px solid white; /* set border */   
+}
