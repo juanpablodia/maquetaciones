@@ -16,7 +16,7 @@ h1 {
     height: 810px; /* set height */
     margin: 0 auto; /* center the container */
     border: 2px solid black; /* set border */
-    flex-direction: row; /* set the direction of the flex */
+    flex-direction: column; /* set the direction of the flex */
     justify-content: center ; /* align the items to the end */
     flex-wrap: wrap; /* wrap the flex items */    
     /*flex flow: row wrap-reverse; */
@@ -46,3 +46,4 @@ h1 {
 
 /* justify-content: alinea los elementos flexibles a lo largo del eje principal del contenedor. Controla la distribución del espacio adicional en el eje principal */
 /* aline items: alinea los elementos flexibles dentro del contenedor cuando los elementos no utilizan todo el espacio disponible en el eje transversal */
+/* align-content: alinea las líneas de los elementos flexibles dentro del contenedor cuando hay espacio ad
