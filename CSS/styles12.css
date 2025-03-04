@@ -123,10 +123,108 @@ section.SobreNosotros article .description {
     flex: 1; /* Toma una parte de las tres disponibles */
     display: flex; /* Para que los elementos se alineen en línea */
     align-items: center; /* Alinea los elementos al centro */
-    background: #d6a3fb; /* Color de fondo */
+    background: #fbbca3; /* Color de fondo */
     border-radius: 100px; /* Borde redondeado */
     padding: 6.25vw; /* Relleno interno */ 
     color: #000000; /* Color del texto */
 }
 
 /* service section */
+
+section.Servicios article {
+    display: flex; /* Para que los elementos se alineen en línea */
+    width: 100%; /* Ancho del artículo */
+}
+
+section.Servicios figure {
+    display: flex; /* Para que los elementos se alineen en línea */
+    align-items: center; /* Alinea los elementos al centro */       
+    justify-content: center; /* Alinea los elementos al centro */
+    flex-basis: 56.25vw; /* Ancho del elemento */
+    margin: 0; /* Elimina el margen por defecto */
+    background: var(--green); /* Color de fondo */
+    border-radius: var(--border-radius); /* Borde redondeado */
+}
+
+section.Servicios figure img {
+    width: 50%; /* Ancho de la imagen */
+}
+
+section.Servicios .text {
+    display: flex; /* Para que los elementos se alineen en línea */
+    flex-direction: column; /* Para que los elementos se alineen en columna */
+    justify-content: center; /* Alinea los elementos al centro */
+    flex: 1; /* Toma todo el espacio disponible */
+    background: #1f1a1c; /* Color de fondo */
+    padding: var(--gutter); /* Relleno interno */
+    border-radius: var(--border-radius); /* Borde redondeado */
+}
+
+section.Servicios .text a {
+    font-family: 'Space Mono', monospace;
+}
+
+/* Sección de servicios animados */
+
+/*section.Servicios.Servicios-html figure img {
+    animation-name: float;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; 
+    animation-timing-function: cubic-bezier(.77,.28,.42,.93);    
+} */
+
+/*@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(50px);
+    }
+}*/
+
+section.Servicios.Servicios-html figure img {
+    animation-name: rotate-left; /* Nombre de la animación */
+    animation-duration: 10s; /* Duración del ciclo de animación */
+    animation-iteration-count: infinite; /* Repetir infinitamente */
+    animation-timing-function: linear; /* Función de temporización constante */
+}
+
+@keyframes rotate-left {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Estilos para la sección */
+
+section.Servicios.Servicios-html figure {
+    background: var(--pink);/* Añade tus estilos aquí */
+}
+
+section.Servicios.Servicios-html .text h2, 
+section.Servicios.Servicios-html .text a, p
+{
+    color: var(--green); /* Añade tus estilos aquí */
+}
+
+section.Servicios.Servicios-css figure {
+    background: var(--blue); /* Color de fondo */
+}
+
+section.Servicios.Servicios-css .text  h2, 
+section.Servicios.Servicios-css .text a {
+    color: var(--blue); /* Color del texto */
+}
+
+section.Servicios.Servicios-js .text  h2,
+section.Servicios.Servicios-js .text a {
+    color: #d62c0e; /* Color del texto */
+}
+
+/* sección de contacto */
+
+
