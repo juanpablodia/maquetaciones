@@ -34,12 +34,12 @@ a {
 }
 
 section {
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 100px);
-    top: 100px;
-    z-index: 2;
+    position: relative; /* Posición relativa */
+    display: flex; /* Para que los elementos se alineen en línea */
+    width: 100%; /* Ancho de la sección */
+    height: calc(100vh - -50px); /* Altura de la sección */
+    top: 200px; /* Distancia superior */
+    z-index: 2; /* Asegura que la sección esté sobre el contenido */
 }
 
 section.sticky {
@@ -57,44 +57,43 @@ section.full-screen {
 
 nav {
     position: fixed; /* Fija la barra lateral en la ventana */
-    width: 100%; /* Ancho de la barra lateral */
-    height: 100px; /* Altura completa de la ventana */
+    width: 200px; /* Ancho de la barra lateral */
+    height: 15%; /* Altura completa de la ventana */
     top: 20px; /* Distancia superior */
-    left: 85%; /* Distancia izquierda */
-    font-size: 25px; /* Tamaño de fuente */
+    right: 20px; /* Cambia a right para moverla a la derecha */
+    font-size: 20px; /* Tamaño de fuente */
+    z-index: 1000; /* Asegura que la barra esté sobre el contenido */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+    padding: 10px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
 }
 
 nav ul {
-    display: flex; /* Para que los elementos se alineen en línea */
-    flex-direction: column; /* Para que los elementos se alineen en columna */
-    width: 100%; /* Ancho de la barra lateral */
-    height: 100%; /* Altura de la barra lateral */
-    margin: 0; /* Elimina el margen por defecto */
-    padding: 0; /* Elimina el relleno por defecto */
-    gap: 15px; /* Espacio entre elementos */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
 }
 
 nav ul li {
     list-style: none;
-    margin-left: 45px;
+    margin-left: 0; /* Elimina el margen izquierdo */
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 nav ul li a {
     color: #ffffff;
-    font-family: 'Space Mono' monospace;
-}
-
-/* Estilos para el contenido menú flotante */
-
-nav ul li {
-    list-style: none;
-    margin-bottom: 15px; /* Espacio entre los elementos */
-    transition: transform 0.3s ease, color 0.3s ease; /* Suaviza la transición */
+    font-family: 'Space Mono', monospace;
+    text-decoration: none;
 }
 
 nav ul li:hover {
-    transform: translateY(-5px); /* Eleva ligeramente el elemento */
-    color: #ff6347; /* Cambia el color del texto al pasar el cursor */
+    transform: translateY(-5px);
+    color: #ff6347;
 }
 
 /* Estilos para el contenido */
@@ -129,3 +128,5 @@ section.SobreNosotros article .description {
     padding: 6.25vw; /* Relleno interno */ 
     color: #000000; /* Color del texto */
 }
+
+/* service section */
