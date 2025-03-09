@@ -19,13 +19,13 @@ html, body {
 }
 
 h1 {
-    font-size: 80px; /* Tamaño de fuente */
-    margin: 0px; /* Elimina el margen por defecto */
+    font-size: 50px; /* Tamaño de fuente */
+    margin: 20px; /* Elimina el margen por defecto */
 }
 
 h2 {
     font-size: 50px; /* Tamaño de fuente */
-    margin: 0px; /* Elimina el margen por defecto */
+    margin: 10px; /* Elimina el margen por defecto */
 }
 
 a {
@@ -247,10 +247,6 @@ section.Servicios.Servicios-js figure img {
     }
 }
 
-
-
-
-
 /* Estilos para la sección */
 
 section.Servicios.Servicios-html figure {
@@ -279,4 +275,59 @@ section.Servicios.Servicios-js .text a {
 
 /* sección de contacto */
 
+section.Contacto {
+    align-items: center; /* Alinea los elementos al centro */
+    justify-content: center; /* Alinea los elementos al centro */ 
+    background: linear-gradient(var(--blue), var(--green) 60%, var(--pink) 70%, var(--grey)); /* Degradado de colores */
+    border-radius: var(--border-radius); /* Borde redondeado */ 
+    mix-blend-mode: difference; /* Mezcla de colores */
+    font-size: 200px; /* Tamaño de fuente */
+    font-weight: bold; /* Grosor de la fuente */
+    border-color: #1c47ff;
+}
 
+
+section.Contacto a:hover {
+    filter: blur(5px); /* Aplica un desenfoque al pasar el ratón */
+}
+
+/*responsive*/
+
+@media only screen and (max-width: 768px) {
+    html, body {
+        --border-radius: 50px; /* Radio del borde */
+        --gutter: 6.25vw; /* Espacio entre elementos */
+}
+
+h1 {
+    font-size: 60px; /* Tamaño de fuente */
+}
+
+h1 {
+    font-size: 40px; /* Tamaño de fuente */
+}
+
+nav ul li {
+    margin-left: 25px; /* Margen izquierdo */
+}
+
+section .Servicios article {
+    flex-direction: column; /* Para que los elementos se alineen en columna */
+}
+
+section .Servicios figure {
+    flex-basis: 25vh; /* Ancho del elemento */
+}
+
+section .Servicios img {
+    width: 20%; /* Relleno interno */
+}
+
+section .Contacto a {
+    font-size: 50px; /* Tamaño de fuente */
+    color: #000000; /* Color del texto */
+    font-weight: bold; /* Grosor de la fuente */
+    transition: filter 2s cubic-bezier(.77,.28,.42,.93); /* Transición */
+    will-change: filter; /* Cambio de filtro */
+    transform: rotate(90deg); /* Rotación */
+}
