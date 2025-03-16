@@ -124,45 +124,7 @@ section.Sobremi article {
 }
 
 section.Sobremi article .title {
-    flex: 2    @media only screen and (max-width: 768px) {
-        html, body {
-            --border-radius: 50px; /* Radio del borde */
-            --gutter: 6.25vw; /* Espacio entre elementos */
-        } /* Falta esta llave de cierre */
-    }
-    
-    h1 {
-        font-size: 60px; /* Tamaño de fuente */
-    }
-    
-    h1 {
-        font-size: 40px; /* Tamaño de fuente */
-    }
-    
-    nav ul li {
-        margin-left: 25px; /* Margen izquierdo */
-    }
-    
-    section .Servicios article {
-        flex-direction: column; /* Para que los elementos se alineen en columna */
-    }
-    
-    section .Servicios figure {
-        flex-basis: 25vh; /* Ancho del elemento */
-    }
-    
-    section .Servicios img {
-        width: 20%; /* Relleno interno */
-    }
-    
-    section .Contacto a {
-        font-size: 50px; /* Tamaño de fuente */
-        color: #000000; /* Color del texto */
-        font-weight: bold; /* Grosor de la fuente */
-        transition: filter 2s cubic-bezier(.77,.28,.42,.93); /* Transición */
-        will-change: filter; /* Cambio de filtro */
-        transform: rotate(90deg); /* Rotación */
-    }; /* Toma dos partes de las tres disponibles */
+    flex: ; /* Toma dos partes de las tres disponibles */
     display: flex; /* Para que los elementos se alineen en línea */
     align-items: first baseline; /* Alinea los elementos al final */
     background: #1c47ff; /* Color de fondo */
@@ -352,39 +314,37 @@ section.Contacto a:hover {
     html, body {
         --border-radius: 50px; /* Radio del borde */
         --gutter: 6.25vw; /* Espacio entre elementos */
-    }
+}
 
-    h1 {
-        font-size: 60px; /* Tamaño de fuente */
-    }
+h1 {
+    font-size: 60px; /* Tamaño de fuente */
+}
 
-    h1 {
-        font-size: 40px; /* Tamaño de fuente */
-    }
+h1 {
+    font-size: 40px; /* Tamaño de fuente */
+}
 
-    nav ul li {
-        margin-left: 25px; /* Margen izquierdo */
-    }
+nav ul li {
+    margin-left: 25px; /* Margen izquierdo */
+}
 
-    section .Servicios article {
-        flex-direction: column; /* Para que los elementos se alineen en columna */
-    }
+section .Servicios article {
+    flex-direction: column; /* Para que los elementos se alineen en columna */
+}
 
-    section .Servicios figure {
-        flex-basis: 25vh; /* Ancho del elemento */
-    }
+section .Servicios figure {
+    flex-basis: 25vh; /* Ancho del elemento */
+}
 
-    section .Servicios img {
-        width: 20%; /* Relleno interno */
-    }
+section .Servicios img {
+    width: 20%; /* Relleno interno */
+}
 
-    section .Contacto a {
-        font-size: 50px; /* Tamaño de fuente */
-        color: #000000; /* Color del texto */
-        font-weight: bold; /* Grosor de la fuente */
-        transition: filter 2s cubic-bezier(.77,.28,.42,.93); /* Transición */
-        will-change: filter; /* Cambio de filtro */
-        transform: rotate(90deg); /* Rotación */
-    }
-
+section .Contacto a {
+    font-size: 50px; /* Tamaño de fuente */
+    color: #000000; /* Color del texto */
+    font-weight: bold; /* Grosor de la fuente */
+    transition: filter 2s cubic-bezier(.77,.28,.42,.93); /* Transición */
+    will-change: filter; /* Cambio de filtro */
+    transform: rotate(90deg); /* Rotación */
 }
