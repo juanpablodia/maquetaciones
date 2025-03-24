@@ -29,7 +29,7 @@ h1 {
 }
 
 h1:hover {
-    color: white; /* Color del texto al pasar el cursor */
+    color: white; /* Color del texto al pasar el cursor */ 
     font-family: 'Space Mono', monospace; /* Fuente alternativa */
 }
 
@@ -138,8 +138,8 @@ section.Sobremi .empty {
 
 .interactive-container {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     backdrop-filter: blur(10px);
@@ -407,13 +407,15 @@ section.Servicios figure img {
 }
 
 section.Servicios .text {
-    display: flex; /* Para que los elementos se alineen en línea */
+    display: flexbox; /* Para que los elementos se alineen en línea */
     flex-direction: column; /* Para que los elementos se alineen en columna */
     justify-content: center; /* Alinea los elementos al centro */
     flex: 1; /* Toma todo el espacio disponible */
-    background: #1f1a1c; /* Color de fondo */
+    background: #1f1c1a; /* Color de fondo */
     padding: var(--gutter); /* Relleno interno */
     border-radius: var(--border-radius); /* Borde redondeado */
+    top: 100px; /* Distancia superior */
+    z-index: 2; /* Elimina la posición superior */  
 }
 
 section.Servicios .text a {
