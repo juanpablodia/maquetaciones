@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Barco Navegando</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000; /* Fallback por si el canvas tarda en cargar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        canvas {
+            display: block;
+            background-color: #70c5ce; /* Un color base para el cielo de día */
+        }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 12px;
+        }
+        #controls label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="simulationCanvas"></canvas>
+    <div id="controls">
+        <label for="timeSlider">Hora del día:</label>
+        <input type="range" id="timeSlider" min="0" max="2399" value="1200" style="width: 150px;">
+        <span id="timeValue">12:00</span>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('simulationCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let boat = {
+            x: 0, // Se calculará para que empiece en el centro
+            y: 0, // Se calculará para que esté sobre el agua
+            width: 100,
+            height: 60, // Casco + mástil
+            mastHeight: 40,
+            sailWidth: 30,
+            sailHeight: 35,
+            bobOffset: 0,
+            bobSpeed: 0.05,
+            lightOn: false,
+            lightColor: 'yellow'
+        };
+
+        let waves = [];
+        const numWaves = 5;
+        const waveAmplitude = 10;
+        const waveLength = 200;
+        let wavePhase = 0;
+
+        let fishSchool = [];
+        const numFish = 20;
+        const fishSize = 10;
+
+        let stars = [];
+        const numStars = 150;
+
+        // Control del tiempo
+        let currentTime = 12 * 100; // Formato HHMM, 12:00 PM
+        const timeSlider = document.getElementById('timeSlider');
+        const timeValueDisplay = document.getElementById('timeValue');
+        timeSlider.addEventListener('input', (e) => {
+            currentTime = parseInt(e.target.value);
+            const hours = Math.floor(currentTime / 100);
+            const minutes = currentTime % 100;
+            timeValueDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+            generateStars(); // Regenerar estrellas si el slider cambia a noche
+        });
+
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            
+            // Posicionar barco
+            boat.x = width / 2 - boat.width / 2;
+            boat.y = height * 0.65 - boat.height / 2 + boat.mastHeight /2; // Ajustar para que el casco esté sobre el agua
+
+            // Inicializar olas
+            waves = [];
+            for (let i = 0; i < numWaves; i++) {
+                waves.push({
+                    yOffset: (height * 0.65) + (i * 15) - (numWaves * 15 / 2), // Distribuir olas verticalmente
+                    opacity: 0.2 + (i * 0.05),
+                    speed: 0.5 + Math.random() * 0.5
+                });
+            }
+            generateStars();
+            initFish();
+        }
+
+        function generateStars() {
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * (height * 0.65), // Solo en la parte del cielo
+                    radius: Math.random() * 1.5,
+                    opacity: Math.random() * 0.5 + 0.5 // Para que algunas brillen más
+                });
+            }
+        }
+        
+        function initFish() {
+            fishSchool = [];
+            for (let i = 0; i < numFish; i++) {
+                fishSchool.push({
+                    x: Math.random() * width,
+                    y: height * 0.7 + Math.random() * (height * 0.3 - fishSize), // Debajo de la superficie
+                    vx: (Math.random() - 0.5) * 2, // Velocidad horizontal
+                    vy: (Math.random() - 0.5) * 0.5, // Velocidad vertical sutil
+                    size: fishSize * (0.5 + Math.random() * 0.5),
+                    color: `hsl(${Math.random() * 60 + 180}, 70%, 60%)`, // Tonos azules/verdes
+                    phase: Math.random() * Math.PI * 2 // Para animación de aleta
+                });
+            }
+        }
+
+        function getTimeFactors() {
+            const hours = currentTime / 100; // De 0 a 23.99
+            
+            // Factor de día (0 = medianoche, 1 = mediodía, 0 = medianoche siguiente)
+            // Usamos una función seno para una transición suave
+            const dayFactor = Math.sin((hours / 24) * Math.PI - Math.PI/2) * 0.5 + 0.5; // Ajustado para que el pico sea al mediodía
+            
+            // Factor de noche (inverso al día, pero no linealmente)
+            let nightFactor = 0;
+            if (hours < 5 || hours > 20) { // Noche profunda
+                nightFactor = 1;
+            } else if (hours >= 5 && hours < 7) { // Amanecer
+                nightFactor = 1 - (hours - 5) / 2;
+            } else if (hours <= 20 && hours > 18) { // Atardecer
+                nightFactor = (hours - 18) / 2;
+            }
+
+            // Amanecer/Atardecer
+            let dawnDuskFactor = 0;
+            if ((hours >= 4 && hours < 8) || (hours >= 17 && hours < 21)) {
+                 dawnDuskFactor = Math.sin(((hours % 12) - 4) / 4 * Math.PI / 2);
+                 if (hours >=17) dawnDuskFactor = Math.sin((( (hours-12) % 12) - 5) / 4 * Math.PI / 2); // Ajuste tarde
+                 dawnDuskFactor = Math.max(0, Math.min(1, dawnDuskFactor));
+            }
+            
+            return { dayFactor, nightFactor, dawnDuskFactor, hours };
+        }
+
+        function drawSkyAndSunMoon(factors) {
+            const { dayFactor, nightFactor, dawnDuskFactor, hours } = factors;
+
+            // Colores base
+            const daySky = { r: 112, g: 197, b: 206 }; // #70c5ce
+            const nightSky = { r: 10, g: 20, b: 40 };
+            const dawnDuskTint = { r: 255, g: 150, b: 50 }; // Naranja/Rojo
+
+            // Interpolar color del cielo
+            let r = (daySky.r * (1-nightFactor)) + (nightSky.r * nightFactor);
+            let g = (daySky.g * (1-nightFactor)) + (nightSky.g * nightFactor);
+            let b = (daySky.b * (1-nightFactor)) + (nightSky.b * nightFactor);
+
+            // Añadir tinte de amanecer/atardecer
+            r = r * (1 - dawnDuskFactor) + dawnDuskTint.r * dawnDuskFactor * 0.6;
+            g = g * (1 - dawnDuskFactor) + dawnDuskTint.g * dawnDuskFactor * 0.6;
+            b = b * (1 - dawnDuskFactor) + dawnDuskTint.b * dawnDuskFactor * 0.6;
+            
+            ctx.fillStyle = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+            ctx.fillRect(0, 0, width, height * 0.65); // Solo la parte del cielo
+
+            // Sol/Luna
+            const sunMoonRadius = 30;
+            const orbitRadius = width * 0.4;
+            const angle = (hours / 24) * Math.PI * 2 - Math.PI / 2; // Posición angular
+            
+            const sunMoonX = width / 2 + Math.cos(angle) * orbitRadius;
+            const sunMoonY = height * 0.55 - Math.sin(angle) * (height * 0.45); // Sube y baja más
+
+            if (sunMoonY < height * 0.65) { // Solo dibujar si está sobre el horizonte del agua
+                if (hours > 6 && hours < 19) { // Sol
+                    ctx.fillStyle = `rgba(255, 255, 100, ${0.5 + dayFactor * 0.5})`; // Sol más brillante al mediodía
+                    boat.lightOn = false;
+                } else { // Luna
+                    ctx.fillStyle = `rgba(230, 230, 240, ${0.3 + nightFactor * 0.7})`; // Luna más visible de noche
+                    boat.lightOn = true;
+                }
+                ctx.beginPath();
+                ctx.arc(sunMoonX, sunMoonY, sunMoonRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Resplandor Sol/Luna
+                if (hours > 6 && hours < 19) { // Resplandor Sol
+                    const gradSun = ctx.createRadialGradient(sunMoonX, sunMoonY, sunMoonRadius, sunMoonX, sunMoonY, sunMoonRadius * 3);
+                    gradSun.addColorStop(0, `rgba(255, 255, 150, ${0.3 * dayFactor})`);
+                    gradSun.addColorStop(1, `rgba(255, 255, 150, 0)`);
+                    ctx.fillStyle = gradSun;
+                    ctx.fillRect(0, 0, width, height * 0.65);
+                } else { // Resplandor Luna
+                     const gradMoon = ctx.createRadialGradient(sunMoonX, sunMoonY, sunMoonRadius, sunMoonX, sunMoonY, sunMoonRadius * 2);
+                    gradMoon.addColorStop(0, `rgba(200, 200, 220, ${0.15 * nightFactor})`);
+                    gradMoon.addColorStop(1, `rgba(200, 200, 220, 0)`);
+                    ctx.fillStyle = gradMoon;
+                    ctx.fillRect(0, 0, width, height * 0.65);
+                }
+            } else {
+                 boat.lightOn = true; // Si el sol/luna no es visible (noche profunda o día nublado conceptualmente)
+            }
+
+
+            // Estrellas
+            if (nightFactor > 0.3) { // Mostrar estrellas si es suficientemente oscuro
+                stars.forEach(star => {
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * nightFactor * (Math.sin(Date.now()*0.001 + star.x) * 0.2 + 0.8) })`; // Parpadeo sutil
+                    ctx.fill();
+                });
+            }
+        }
+        
+        function drawSea(factors) {
+            const { dayFactor, nightFactor, dawnDuskFactor } = factors;
+
+            // Colores base
+            const daySea = { r: 60, g: 120, b: 180 };
+            const nightSea = { r: 20, g: 40, b: 80 };
+            const dawnDuskSeaTint = { r: 180, g: 100, b: 40 };
+
+            // Interpolar color del mar
+            let r = (daySea.r * (1-nightFactor)) + (nightSea.r * nightFactor);
+            let g = (daySea.g * (1-nightFactor)) + (nightSea.g * nightFactor);
+            let b = (daySea.b * (1-nightFactor)) + (nightSea.b * nightFactor);
+
+             // Añadir tinte de amanecer/atardecer al mar
+            r = r * (1 - dawnDuskFactor * 0.7) + dawnDuskSeaTint.r * dawnDuskFactor * 0.7;
+            g = g * (1 - dawnDuskFactor * 0.7) + dawnDuskSeaTint.g * dawnDuskFactor * 0.7;
+            b = b * (1 - dawnDuskFactor * 0.7) + dawnDuskSeaTint.b * dawnDuskFactor * 0.7;
+
+            ctx.fillStyle = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+            ctx.fillRect(0, height * 0.65, width, height * 0.35); // El mar
+
+            // Olas
+            wavePhase += 0.02;
+            waves.forEach((wave, index) => {
+                ctx.beginPath();
+                ctx.moveTo(0, wave.yOffset + Math.sin(wavePhase * wave.speed) * waveAmplitude / 2);
+                for (let x = 0; x < width; x += 20) {
+                    const y = wave.yOffset + Math.sin(x / waveLength + wavePhase * wave.speed + index) * waveAmplitude;
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(width, height); // Base de la ola
+                ctx.lineTo(0, height);     // Base de la ola
+                ctx.closePath();
+                
+                // Un poco más oscuro para cada ola sucesiva
+                let wave_r = Math.max(0, r - index * 5);
+                let wave_g = Math.max(0, g - index * 5);
+                let wave_b = Math.max(0, b - index * 5);
+
+                ctx.fillStyle = `rgba(${wave_r}, ${wave_g}, ${wave_b}, ${wave.opacity})`;
+                ctx.fill();
+            });
+        }
+
+        function drawBoat() {
+            ctx.save();
+            boat.bobOffset = Math.sin(Date.now() * boat.bobSpeed) * 5; // Movimiento de balanceo
+            const currentBoatY = boat.y + boat.bobOffset;
+            
+            ctx.translate(boat.x + boat.width / 2, currentBoatY + boat.height / 2 - boat.mastHeight/2); // Mover origen al centro del casco
+            ctx.rotate(Math.sin(Date.now() * boat.bobSpeed * 0.5) * 0.02); // Rotación sutil
+
+            // Casco del barco
+            ctx.fillStyle = '#8B4513'; // Marrón madera
+            ctx.beginPath();
+            ctx.moveTo(-boat.width / 2, 0); // Izquierda-centro
+            ctx.quadraticCurveTo(-boat.width/2 + 10, boat.height/3, -boat.width/2 + 20, boat.height/2 - boat.mastHeight/2); // Curva proa inferior
+            ctx.lineTo(boat.width/2 - 20, boat.height/2 - boat.mastHeight/2); // Base
+            ctx.quadraticCurveTo(boat.width/2 -10, boat.height/3, boat.width/2, 0); // Curva popa inferior
+            ctx.quadraticCurveTo(boat.width/2 * 0.8, -boat.height/6, boat.width/2 * 0.5, -boat.height/4 + boat.mastHeight/2); // Borde superior popa
+            ctx.lineTo(-boat.width/2 * 0.5, -boat.height/4+ boat.mastHeight/2); // Borde superior
+            ctx.quadraticCurveTo(-boat.width/2 * 0.8, -boat.height/6, -boat.width/2, 0); // Borde superior proa
+            ctx.fill();
+            ctx.strokeStyle = '#542707';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+
+            // Detalles del casco (líneas de madera)
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+            ctx.lineWidth = 1;
+            for(let i=1; i<3; i++){
+                ctx.beginPath();
+                ctx.moveTo(-boat.width/2 + 5*i, -boat.height/6 + i*3 + boat.mastHeight/2.5);
+                ctx.lineTo(boat.width/2 - 5*i, -boat.height/6 + i*3 + boat.mastHeight/2.5);
+                ctx.stroke();
+            }
+
+
+            // Mástil
+            ctx.fillStyle = '#A0522D'; // Sienna
+            ctx.fillRect(-3, -boat.mastHeight - boat.height/4 + boat.mastHeight/2 +5, 6, boat.mastHeight);
+            ctx.strokeStyle = '#542707';
+            ctx.strokeRect(-3, -boat.mastHeight - boat.height/4 + boat.mastHeight/2 +5, 6, boat.mastHeight);
+
+            // Vela
+            ctx.fillStyle = '#FFF8DC'; // Blanco Hueso (Cornsilk)
+            ctx.beginPath();
+            const sailTopY = -boat.mastHeight - boat.height/4 + boat.mastHeight/2 + 10;
+            const sailBottomY = -boat.height/4 + boat.mastHeight/2;
+            
+            ctx.moveTo(5, sailTopY); // Punto superior pegado al mástil
+            ctx.quadraticCurveTo(5 + boat.sailWidth * (0.8 + Math.sin(Date.now() * 0.0005)*0.2) , sailTopY + boat.sailHeight / 2, 5, sailBottomY); // Curva de la vela
+            ctx.lineTo(5, sailTopY); // Cerrar forma (aunque se superpone)
+            ctx.fill();
+            ctx.strokeStyle = '#D2B48C'; // Tan
+            ctx.stroke();
+
+            // Luz del barco
+            if (boat.lightOn) {
+                ctx.fillStyle = boat.lightColor;
+                ctx.beginPath();
+                ctx.arc(0, -boat.mastHeight - boat.height/4 + boat.mastHeight/2 + 2, 4, 0, Math.PI * 2); // Luz en la punta del mástil
+                ctx.fill();
+
+                // Resplandor de la luz
+                const lightGlow = ctx.createRadialGradient(0, -boat.mastHeight - boat.height/4 + boat.mastHeight/2 + 2, 2, 0, -boat.mastHeight - boat.height/4 + boat.mastHeight/2 + 2, 15);
+                lightGlow.addColorStop(0, `rgba(255, 255, 180, 0.7)`);
+                lightGlow.addColorStop(1, `rgba(255, 255, 180, 0)`);
+                ctx.fillStyle = lightGlow;
+                ctx.beginPath();
+                ctx.arc(0, -boat.mastHeight - boat.height/4 + boat.mastHeight/2 +2, 15, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
+
+        function drawFish() {
+            fishSchool.forEach(fish => {
+                ctx.save();
+                ctx.translate(fish.x, fish.y);
+                if (fish.vx < 0) { // Si va a la izquierda, voltear
+                    ctx.scale(-1, 1);
+                }
+
+                // Cuerpo del pez
+                ctx.fillStyle = fish.color;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, fish.size, fish.size / 2.5, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Aleta caudal (cola)
+                const tailSway = Math.sin(Date.now() * 0.005 + fish.phase) * (fish.size / 3);
+                ctx.beginPath();
+                ctx.moveTo(-fish.size * 0.8, 0);
+                ctx.lineTo(-fish.size * 1.2, -fish.size / 3 + tailSway/2);
+                ctx.lineTo(-fish.size * 1.2, fish.size / 3 + tailSway/2);
+                ctx.closePath();
+                ctx.fill();
+                
+                // Ojo
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(fish.size * 0.5, -fish.size * 0.1, fish.size * 0.1, 0, Math.PI*2);
+                ctx.fill();
+                ctx.fillStyle = 'black';
+                ctx.beginPath();
+                ctx.arc(fish.size * 0.55, -fish.size * 0.1, fish.size * 0.05, 0, Math.PI*2);
+                ctx.fill();
+
+
+                ctx.restore();
+            });
+        }
+
+        function updateFish() {
+            fishSchool.forEach(fish => {
+                fish.x += fish.vx;
+                fish.y += fish.vy;
+
+                // Rebotar en los bordes horizontales del "acuario" (debajo de las olas)
+                if (fish.x > width + fish.size * 2) fish.x = -fish.size * 2;
+                if (fish.x < -fish.size * 2) fish.x = width + fish.size * 2;
+
+                // Rebotar en los bordes verticales del "acuario"
+                const seaSurface = height * 0.70; // Un poco por debajo de la superficie visual de las olas
+                const seaBottom = height - fish.size;
+                if (fish.y < seaSurface) {
+                    fish.y = seaSurface;
+                    fish.vy *= -1;
+                }
+                if (fish.y > seaBottom) {
+                    fish.y = seaBottom;
+                    fish.vy *= -1;
+                }
+                
+                // Cambio aleatorio sutil de dirección vertical
+                if (Math.random() < 0.01) {
+                    fish.vy = (Math.random() - 0.5) * 0.5;
+                }
+            });
+        }
+        
+        function animate() {
+            // No es necesario incrementar currentTime aquí si se controla por slider
+            // currentTime = (currentTime + 1) % 2400; // Avanza el tiempo, 1 min por frame aprox.
+            // timeSlider.value = currentTime;
+            // const hours = Math.floor(currentTime / 100);
+            // const minutes = currentTime % 100;
+            // timeValueDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+
+            const factors = getTimeFactors();
+
+            // Limpiar canvas (o no, si el cielo y mar cubren todo)
+            // ctx.clearRect(0, 0, width, height); // Descomentar si hay artefactos
+
+            drawSkyAndSunMoon(factors);
+            drawSea(factors);
+            updateFish(); // Actualizar posición de peces antes de dibujar
+            drawFish();
+            drawBoat(); // Dibujar el barco encima de todo
+
+            requestAnimationFrame(animate);
+        }
+
+        // Inicialización y arranque
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Primera llamada para configurar todo
+        animate();
+    </script>
+</body>
+</html>
